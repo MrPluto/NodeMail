@@ -6,34 +6,43 @@ const fs = require("fs"); //文件读写
 const path = require("path"); //路径配置
 const schedule = require("node-schedule"); //定时器任务库
 //配置项
-
+const config = require("./config");
+const {
+  startDay,
+  local,
+  EmianService,
+  EamilAuth,
+  EmailFrom,
+  EmailTo
+} = config;
 //纪念日
-let startDay = "2016/6/24";
-//当地拼音,需要在下面的墨迹天气url确认
-const local = "hangzhou";
-
-//发送者邮箱厂家
-let EmianService = "126";
-//发送者邮箱账户SMTP授权码
-let EamilAuth = {
-  user: "xxx@126.com",
-  pass: "xxxx"
-};
-//发送者昵称与邮箱地址
-let EmailFrom = '"vince" <xxxxx@126.com>';
-
-//接收者邮箱地
-let EmailTo = "xxxxx@qq.com";
+// let startDay = "2018/11/08";
+// //当地拼音,需要在下面的墨迹天气url确认
+// const local = "hubei/wuhan";
+//
+// //发送者邮箱厂家
+// let EmianService = "qq";
+// //发送者邮箱账户SMTP授权码
+// let EamilAuth = {
+//   user: "457808167@qq.com",
+//   pass: "bwyppuzvonejbjjj"
+// };
+// //发送者昵称与邮箱地址
+// let EmailFrom = '"man" <457808167@qq.com>';
+//
+// //接收者邮箱地
+// let EmailTo = "1729328566@qq.com";
 //邮件主题
+console.log(config);
 let EmailSubject = "一封暖暖的小邮件";
 
 //每日发送时间
-let EmailHour = 5;
-let EmialMinminute= 20;
+let EmailHour = 17;
+let EmialMinminute= 00;
 
 // 爬取数据的url
 const OneUrl = "http://wufazhuce.com/";
-const WeatherUrl = "https://tianqi.moji.com/weather/china/zhejiang/" + local;
+const WeatherUrl = "https://tianqi.moji.com/weather/china/" + local;
 
 
 // 获取ONE内容
@@ -139,14 +148,14 @@ function sendMail(HtmlData) {
       fs.readFileSync(path.resolve(__dirname, "email.ejs"), "utf8")
     );
     const html = template(HtmlData);
-  
+
     let transporter = nodemailer.createTransport({
       service: EmianService,
       port: 465,
       secureConnection: true,
       auth: EamilAuth
     });
-  
+
     let mailOptions = {
       from: EmailFrom,
       to: EmailTo,
