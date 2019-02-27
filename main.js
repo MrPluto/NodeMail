@@ -10,35 +10,14 @@ const config = require("./config");
 const {
   startDay,
   local,
-  EmianService,
-  EamilAuth,
+  EmailService,
+  EmailAuth,
   EmailFrom,
-  EmailTo
+  EmailTo,
+  EmailSubject,
+  EmailHour,
+  EmailMinminute
 } = config;
-//纪念日
-// let startDay = "2018/11/08";
-// //当地拼音,需要在下面的墨迹天气url确认
-// const local = "hubei/wuhan";
-//
-// //发送者邮箱厂家
-// let EmianService = "qq";
-// //发送者邮箱账户SMTP授权码
-// let EamilAuth = {
-//   user: "457808167@qq.com",
-//   pass: "bwyppuzvonejbjjj"
-// };
-// //发送者昵称与邮箱地址
-// let EmailFrom = '"man" <457808167@qq.com>';
-//
-// //接收者邮箱地
-// let EmailTo = "1729328566@qq.com";
-//邮件主题
-console.log(config);
-let EmailSubject = "一封暖暖的小邮件";
-
-//每日发送时间
-let EmailHour = 17;
-let EmialMinminute= 00;
 
 // 爬取数据的url
 const OneUrl = "http://wufazhuce.com/";
@@ -150,10 +129,10 @@ function sendMail(HtmlData) {
     const html = template(HtmlData);
 
     let transporter = nodemailer.createTransport({
-      service: EmianService,
+      service: EmailService,
       port: 465,
       secureConnection: true,
-      auth: EamilAuth
+      auth: EmailAuth
     });
 
     let mailOptions = {
@@ -205,7 +184,7 @@ function getAllDataAndSendMail(){
 let rule = new schedule.RecurrenceRule();
 rule.dayOfWeek = [0, new schedule.Range(1, 6)];
 rule.hour = EmailHour;
-rule.minute = EmialMinminute;
+rule.minute = EmailMinminute;
 console.log('NodeMail: 开始等待目标时刻...')
 let j = schedule.scheduleJob(rule, function() {
   console.log("执行任务");
