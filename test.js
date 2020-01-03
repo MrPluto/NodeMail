@@ -11,7 +11,7 @@ const { EmailService, EmailAuth, EmailFrom, EmailTo, EmailSubject } = config;
 function sendMail(message, useragent) {
   let HtmlData = {
     message,
-    date: new Date().toISOString(),
+    date: new Date().toString(),
     useragent
   };
   const template = ejs.compile(
