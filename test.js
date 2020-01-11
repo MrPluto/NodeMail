@@ -62,13 +62,13 @@ app.get("/dysign", (req, res) => {
   console.log(tac);
   console.log(url);
 
-  // if (!url || !tac) {
-  //   res.json({
-  //     code: -1,
-  //     message: "缺少url或者tac"
-  //   });
-  //   return;
-  // }
+  if (!url || !tac) {
+    res.json({
+      code: -1,
+      message: "缺少url或者tac"
+    });
+    return;
+  }
   // tac =
   //   'i+2gv0xzhi6rqs!i#fz6s"yZl!%s"l"u&kLs#l l#vr*charCodeAtx0[!cb^i$1em7b*0d#>>>s j￮l  s#';
   let p = {
