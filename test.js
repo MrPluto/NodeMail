@@ -75,8 +75,7 @@ app.get("/dysign", (req, res) => {
     url,
     bodyVal2str: false
   };
-  let ttac = `tac='${tac}'`;
-  let signature = generateSignature([p, ttac]);
+  let signature = generateSignature([p, tac]);
   res.json({
     code: 200,
     data: {
