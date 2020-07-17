@@ -61,7 +61,8 @@ var doc = "<!DOCTYPE html><html><head> </head><body></body></html>";
 global.document = new JSDOM(doc).window.document;
 
 const generateSignature = function(params) {
-  tac = params[1];
+  var tac = params[1];
+  eval(`tac='${tac}'`);
   var t = {};
 
   if (((t.__M = t.__M || {}), !t.__M.require)) {

@@ -13,10 +13,10 @@ var doc = `<!DOCTYPE html>
   <html>
     <head>
     <script
-        src="file:///Users/tongchepluto/Desktop/cst/douyin-tools/manager/raven.js"
+        src="file:///home/pluto/data/NodeMail/raven.js"
         crossorigin="anonymous"
       ></script>
-      <script src="file:///Users/tongchepluto/Desktop/cst/douyin-tools/manager/acrawler.js">
+      <script src="file:///home/pluto/data/NodeMail/acrawler.js">
       </script>
     </head>
     <body>
@@ -41,7 +41,8 @@ var window = new JSDOM(doc, { resources: "usable", runScripts: "dangerously" })
 global.document = window.document;
 
 const generateSignature = function(params) {
-  tac = params[1];
+  var tac = params[1];
+  eval(`tac='${tac}'`);
 
   if (!window.byted_acrawler) {
     console.log("error: acrawler not ready");

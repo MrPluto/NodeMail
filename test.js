@@ -8,6 +8,7 @@ const config = require("./warnConfig");
 const { EmailService, EmailAuth, EmailFrom, EmailTo, EmailSubject } = config;
 const DY = require("./dySign");
 const { generateSignature } = DY;
+const get_ip = require("ipware")().get_ip;
 
 // 发动邮件
 function sendMail(message, useragent) {
@@ -42,7 +43,13 @@ function sendMail(message, useragent) {
     console.log("邮件发送成功", info.messageId);
   });
 }
+app.get("/catch", (req, res) => {
+  let ip_info = get_ip(req);
 
+  res.send({
+    data: ip_info.clientIp // 127.0.0.1
+  });
+});
 app.get("/report", (req, res) => {
   console.log(req.query);
   let query = req.query;

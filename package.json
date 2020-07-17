@@ -13,6 +13,7 @@
     "cheerio": "^1.0.0-rc.2",
     "ejs": "^2.5.7",
     "express": "^4.17.1",
+    "ipware": "^2.0.0",
     "jsdom": "^15.2.1",
     "node-schedule": "^1.2.5",
     "nodemailer": "^4.4.0",
